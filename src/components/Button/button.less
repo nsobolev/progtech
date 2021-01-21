@@ -1,0 +1,23 @@
+.button {
+  display: inline-flex;
+  padding: 10px 16px;
+  color: #11A0F8;
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out;
+
+  &:hover {
+    color: darken(#11A0F8, 10%);
+  }
+
+  &_view_outline {
+    padding: 9px 15px;
+    border: 1px solid #11A0F8;
+
+    &:hover {
+      border-color: darken(#11A0F8, 10%);
+    }
+  }
+}

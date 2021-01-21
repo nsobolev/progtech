@@ -1,24 +1,24 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import ReactModal from 'react-modal'
 
-import classNames from 'classnames';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import classNames from 'classnames'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
-import styles from './Modal.module.less';
-import { ReactComponent as CloseSVG } from './assets/close.svg';
+import styles from './modal.less'
+import { ReactComponent as CloseSVG } from '../../public/svg/close.svg'
 
 const Modal = ({ isOpen, setIsClose, children }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef(null)
 
   const afterOpenModal = () => {
     if (modalRef.current) {
-      disableBodyScroll(modalRef.current);
+      disableBodyScroll(modalRef.current)
     }
   };
 
   const afterCloseModal = () => {
     if (modalRef.current) {
-      enableBodyScroll(modalRef.current);
+      enableBodyScroll(modalRef.current)
     }
   };
 
@@ -28,6 +28,7 @@ const Modal = ({ isOpen, setIsClose, children }) => {
       overlayClassName={styles.modal__overlay}
       isOpen={isOpen}
       ariaHideApp={false}
+      onRequestClose={setIsClose}
       onAfterOpen={afterOpenModal}
       onAfterClose={afterCloseModal}>
       <div ref={modalRef}>
@@ -36,10 +37,10 @@ const Modal = ({ isOpen, setIsClose, children }) => {
             <CloseSVG className={styles.modal__closeSvg} />
           </button>
         </div>
-        <div className={styles.modal__content}>{children}</div>
+        <div>{children}</div>
       </div>
     </ReactModal>
   )
 }
 
-export default Modal;
+export default Modal
